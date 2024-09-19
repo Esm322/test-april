@@ -10,11 +10,17 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@pinia/nuxt": "^0.5.4",
+    "axios": "^1.7.7",
     "nuxt": "^3.13.0",
+    "pinia": "^2.2.2",
     "vue": "latest",
     "vue-router": "latest"
   },
   "devDependencies": {
     "sass": "^1.79.1"
+  },
+  "overrides": {
+    "vue": "latest"
   }
 }

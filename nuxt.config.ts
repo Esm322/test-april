@@ -2,5 +2,11 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
   devtools: { enabled: false },
-  css: ['~/assets/styles/main.scss', '~/assets/styles/normalize.css']
+  css: [
+    '~/assets/styles/main.scss',
+    '~/assets/styles/normalize.css'
+  ],
+  modules: [
+    '@pinia/nuxt',
+  ],
 })
