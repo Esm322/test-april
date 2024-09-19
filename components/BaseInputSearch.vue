@@ -7,10 +7,16 @@
 </template>
 
 <script setup lang="ts">
+  import { onUnmounted } from 'vue';
+
   import { storeToRefs } from 'pinia';
 
   import { useItemsStore } from '~/stores/itemsStore';
 
   const store = useItemsStore();
   const { searchValue } = storeToRefs(store);
+
+  onUnmounted(() => {
+    searchValue.value = '';
+  })
 </script>

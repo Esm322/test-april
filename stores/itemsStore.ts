@@ -6,13 +6,16 @@ import { deepest } from '~/helpers/takeDeep';
 
 import type { IItem } from '~/interfaces/item'
 
-export const useItemsStore = defineStore('client', () => {
+export const useItemsStore = defineStore('items', () => {
+  const Base_Url: string = 'https://fakestoreapi.com/products';
+
   const data = ref<IItem[]>([]);
   const itemsPerPage = ref<number>(5);
   const page = ref<number>(1);
   const offset = ref<number>(0);
-  const viewValue = ref('tiled');
-  const searchValue = ref('');
+  const viewValue = ref<string>('tiled');
+  const searchValue = ref<string>('');
+  const isItemsLoading = ref<boolean>(false);
 
   const setView = computed<string>({
     get: (): string => viewValue.value,
@@ -42,9 +45,15 @@ export const useItemsStore = defineStore('client', () => {
   });
 
   function getItemsData(): Promise<void> {
-    return axios.get('https://fakestoreapi.com/products')
+    isItemsLoading.value = true;
+
+    return axios.get(Base_Url)
       .then((response: AxiosResponse): void => data.value = response.data)
-      .catch((error: AxiosResponse) => console.log(error))
+      .catch((error: AxiosResponse) => {
+        isItemsLoading.value = false;
+        console.log(error);
+      })
+      .finally(() => isItemsLoading.value = false)
   };
 
   return {
@@ -58,5 +67,6 @@ export const useItemsStore = defineStore('client', () => {
     viewValue,
     setView,
     searchValue,
+    isItemsLoading,
   };
 })

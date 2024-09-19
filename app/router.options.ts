@@ -7,10 +7,15 @@ export default <RouterConfig>{
       path: '/',
       component: () => import('~/pages/MainPage.vue')
     },
-    // {
-    //   name: 'Post',
-    //   path: '/post/:id',
-    //   component: () => import('~/pages/PostPage.vue')
-    // },
+    {
+      name: 'Item',
+      path: '/item/:id',
+      component: () => import('~/pages/ItemPage.vue')
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'notFound',
+      component: () => import('~/pages/NotFoundPage.vue'),
+    },
   ]
 }

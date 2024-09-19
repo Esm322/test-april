@@ -1,6 +1,6 @@
 <template>
   <li class="main-content__item">
-    <a class="main-content__item-link">
+    <NuxtLink :to="{ name: 'Item', params: { id } }" class="main-content__item-link">
       <img :src="props.image" :alt="props.title" class="main-content__item-img">
       <div class="main-content__item-wrapper">
         <h3 class="main-content__item-title">
@@ -10,7 +10,7 @@
           {{ numberFormat(props.price) }}
         </p>
       </div>
-    </a>
+    </NuxtLink>
   </li>
 </template>
 

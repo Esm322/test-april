@@ -8,7 +8,12 @@
           <BaseInputSearch/>
         </div>
 
+        <BaseSpinnerLoading
+          v-if="isItemsLoading"
+        />
+
         <ItemList
+          v-else
           :data="convertedData"
         />
 
@@ -26,7 +31,7 @@ import { storeToRefs } from 'pinia';
 import { useItemsStore } from '~/stores/itemsStore';
 
 const store = useItemsStore();
-const { convertedData } = storeToRefs(store);
+const { convertedData, isItemsLoading } = storeToRefs(store);
 
 onMounted(() => {
   store.getItemsData()
